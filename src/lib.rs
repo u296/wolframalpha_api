@@ -19,7 +19,7 @@ fn encode_char(c: char) -> bool {
     
 }
 
-fn encode_question(s: &str) -> Result<String, Box<dyn Error>> {
+fn encode_question(s: &str) -> Result<String, Box<dyn Error + Send + Sync>> {
     let mut res = String::with_capacity(s.len());
 
     for c in s.chars() {
@@ -50,7 +50,7 @@ fn encode_question(s: &str) -> Result<String, Box<dyn Error>> {
 /// 
 /// * `app_id` - The AppID of your wolframalpha application
 /// * `question` - The plaintext question you want to ask wolframalpha
-pub async fn api_retrieve(app_id: &str, question: &str) -> Result<DynamicImage, Box<dyn Error>> {
+pub async fn api_retrieve(app_id: &str, question: &str) -> Result<DynamicImage, Box<dyn Error + Send + Sync>> {
     
     let encoded_query = encode_question(question)?;
 
