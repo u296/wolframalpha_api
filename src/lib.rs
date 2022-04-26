@@ -64,7 +64,7 @@ pub async fn api_retrieve(app_id: &AppID, question: &str) -> Result<DynamicImage
 
     let response = reqwest::get(format!(
         "http://api.wolframalpha.com/v1/simple?appid={}&i={}",
-        app_id.0, encoded_query
+        &app_id.0, encoded_query
     ))
     .await?;
 
