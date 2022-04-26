@@ -4,14 +4,6 @@ use image::DynamicImage;
 use std::error::Error;
 use std::fmt::Write;
 
-pub struct AppID(str);
-
-impl AsRef<str> for AppID {
-    fn as_ref(&self) -> &str {
-        &self.0
-    }
-}
-
 fn encode_char(c: char) -> bool {
     if c.is_ascii() {
         if c.is_alphanumeric() {
@@ -58,13 +50,13 @@ fn encode_question(s: &str) -> Result<String, Box<dyn Error>> {
 /// 
 /// * `app_id` - The AppID of your wolframalpha application
 /// * `question` - The plaintext question you want to ask wolframalpha
-pub async fn api_retrieve(app_id: &AppID, question: &str) -> Result<DynamicImage, Box<dyn Error>> {
+pub async fn api_retrieve(app_id: &str, question: &str) -> Result<DynamicImage, Box<dyn Error>> {
     
     let encoded_query = encode_question(question)?;
 
     let response = reqwest::get(format!(
         "http://api.wolframalpha.com/v1/simple?appid={}&i={}",
-        &app_id.0, encoded_query
+        app_id, encoded_query
     ))
     .await?;
 

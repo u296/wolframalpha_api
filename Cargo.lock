@@ -1321,7 +1321,7 @@ dependencies = [
 
 [[package]]
 name = "wolframalpha_api"
-version = "0.2.1"
+version = "0.3.0"
 dependencies = [
  "image",
  "reqwest",
