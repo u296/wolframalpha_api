@@ -1,9 +1,9 @@
 [package]
 name = "wolframalpha_api"
-version = "0.6.0"
+version = "0.6.1"
 authors = ["u296"]
 edition = "2021"
-rust-version = "1.59.0"
+rust-version = "1.56.0"
 description = "very primitive api bindings for the wolfram alpha api"
 readme = "README.md"
 repository = "https://github.com/u296/wolframalpha_api"
