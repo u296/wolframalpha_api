@@ -3,7 +3,7 @@
 use bytes::Bytes;
 use image::DynamicImage;
 use std::error::Error;
-use std::fmt::Write;
+use std::fmt::{self, Write};
 
 fn encode_char(c: char) -> bool {
     if c.is_ascii() {
@@ -53,7 +53,10 @@ fn encode_question(s: &str) -> Result<String, Box<dyn Error + Send + Sync>> {
 pub async fn api_retrieve_image(
     app_id: &str,
     question: &str,
-) -> Result<DynamicImage, Box<dyn Error + Send + Sync>> {
+) -> Result<Result<DynamicImage, WolframalphaError>, Box<dyn Error + Send + Sync>> {
+    if question.trim() == "" {
+        return Ok(Err(WolframalphaError::InvalidQuestion))
+    }
     let encoded_query = encode_question(question)?;
 
     let response = reqwest::get(format!(
@@ -62,7 +65,13 @@ pub async fn api_retrieve_image(
     ))
     .await?;
 
-    image::load_from_memory(&response.bytes().await?).map_err(|e| e.into())
+    if response.status() == reqwest::StatusCode::NOT_IMPLEMENTED {
+        return Ok(Err(WolframalphaError::InvalidQuestion))
+    }
+
+    let img = image::load_from_memory(&response.bytes().await?)?;
+
+    Ok(Ok(img))
 }
 
 /// Does the same thing as `api_retrieve_image` but instead of retrieving
@@ -70,14 +79,41 @@ pub async fn api_retrieve_image(
 pub async fn api_retrieve_bytes(
     app_id: &str,
     question: &str,
-) -> Result<Bytes, Box<dyn Error + Send + Sync>> {
+) -> Result<Result<Bytes, WolframalphaError>, Box<dyn Error + Send + Sync>> {
+    if question.trim() == "" {
+        return Ok(Err(WolframalphaError::InvalidQuestion))
+    }
+
     let encoded_query = encode_question(question)?;
 
-    Ok(reqwest::get(format!(
+    let response = reqwest::get(format!(
         "http://api.wolframalpha.com/v1/simple?appid={}&i={}",
         app_id, encoded_query
     ))
-    .await?
-    .bytes()
-    .await?)
+    .await?;
+
+    if response.status() == reqwest::StatusCode::NOT_IMPLEMENTED {
+        return Ok(Err(WolframalphaError::InvalidQuestion))
+    }
+
+    Ok(Ok(response.bytes()
+    .await?))
+}
+
+#[derive(Debug, Clone, Copy)]
+pub enum WolframalphaError {
+    InvalidQuestion
+}
+
+impl fmt::Display for WolframalphaError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", match self {
+            Self::InvalidQuestion => "invalid question"
+        })
+    }
+}
+
+/// Errors specific to wolframalpha
+impl Error for WolframalphaError {
+
 }
