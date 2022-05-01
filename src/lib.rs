@@ -7,6 +7,8 @@ use bytes::Bytes;
 use std::error::Error;
 use std::fmt;
 
+mod response;
+
 #[cfg(feature = "image")]
 mod get_image;
 
@@ -55,8 +57,6 @@ mod encoding {
     }
 }
 
-
-
 /// Does the same thing as `api_retrieve_image` but instead of retrieving
 /// the image it just gives you the raw bytes of the image instead
 pub async fn api_retrieve_bytes(
@@ -64,7 +64,7 @@ pub async fn api_retrieve_bytes(
     question: &str,
 ) -> Result<Result<Bytes, WolframalphaError>, Box<dyn Error + Send + Sync>> {
     if question.trim() == "" {
-        return Ok(Err(WolframalphaError::InvalidQuestion))
+        return Ok(Err(WolframalphaError::InvalidQuestion));
     }
 
     let encoded_query = encoding::encode_question(question)?;
@@ -76,27 +76,28 @@ pub async fn api_retrieve_bytes(
     .await?;
 
     if response.status() == reqwest::StatusCode::NOT_IMPLEMENTED {
-        return Ok(Err(WolframalphaError::InvalidQuestion))
+        return Ok(Err(WolframalphaError::InvalidQuestion));
     }
 
-    Ok(Ok(response.bytes()
-    .await?))
+    Ok(Ok(response.bytes().await?))
 }
 
 #[derive(Debug, Clone, Copy)]
 pub enum WolframalphaError {
-    InvalidQuestion
+    InvalidQuestion,
 }
 
 impl fmt::Display for WolframalphaError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", match self {
-            Self::InvalidQuestion => "invalid question"
-        })
+        write!(
+            f,
+            "{}",
+            match self {
+                Self::InvalidQuestion => "invalid question",
+            }
+        )
     }
 }
 
 /// Errors specific to wolframalpha
-impl Error for WolframalphaError {
-
-}
+impl Error for WolframalphaError {}

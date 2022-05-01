@@ -13,7 +13,7 @@ pub async fn api_retrieve_image(
     question: &str,
 ) -> Result<Result<DynamicImage, WolframalphaError>, Box<dyn Error + Send + Sync>> {
     if question.trim() == "" {
-        return Ok(Err(WolframalphaError::InvalidQuestion))
+        return Ok(Err(WolframalphaError::InvalidQuestion));
     }
     let encoded_query = encoding::encode_question(question)?;
 
@@ -24,7 +24,7 @@ pub async fn api_retrieve_image(
     .await?;
 
     if response.status() == reqwest::StatusCode::NOT_IMPLEMENTED {
-        return Ok(Err(WolframalphaError::InvalidQuestion))
+        return Ok(Err(WolframalphaError::InvalidQuestion));
     }
 
     let img = image::load_from_memory(&response.bytes().await?)?;
