@@ -52,7 +52,7 @@ pub struct Assumption {
     current: Option<String>,
     template: Option<String>,
     count: i32,
-    values: AssumptionValuesWrapper
+    values: AssumptionValuesWrapper,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -67,8 +67,15 @@ pub enum AssumptionValuesWrapper {
 pub struct AssumptionValue {
     name: String,
     desc: String,
-    valid: Option<bool>,
+    valid: Option<BoolOrText>,
     input: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+#[serde(untagged)]
+pub enum BoolOrText {
+    Bool(bool),
+    Text(String),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -2417,4 +2424,1271 @@ r#"{
 	}
 }"#
     ).unwrap();
+
+    let i: FullApiResponse = serde_json::from_str(
+        r#"{
+            "queryresult":{
+                "success":true,
+                "error":false,
+                "numpods":7,
+                "datatypes":"Aircraft",
+                "timedout":"",
+                "timedoutpods":"",
+                "timing":1.242,
+                "parsetiming":0.435,
+                "parsetimedout":false,
+                "recalculate":"",
+                "id":"MSP875516cbd23e29bg8i560000148ei2526f0f2e7c",
+                "host":"https:\/\/www6b3.wolframalpha.com",
+                "server":"20",
+                "related":"https:\/\/www6b3.wolframalpha.com\/api\/v1\/relatedQueries.jsp?id=MSPa875616cbd23e29bg8i560000238f7e5ifbde26e38458888475783217078",
+                "version":"2.6",
+                "inputstring":"F\/A-18E\/F Super Hornet",
+                "pods":[
+                    {
+                        "title":"Input interpretation",
+                        "scanner":"Identity",
+                        "id":"Input",
+                        "position":100,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP875716cbd23e29bg8i56000039didebah5b42f49?MSPStoreType=image\/gif&s=20",
+                                    "alt":"F\/A-18E\/F Super Hornet (aircraft)",
+                                    "title":"F\/A-18E\/F Super Hornet (aircraft)",
+                                    "width":231,
+                                    "height":19,
+                                    "type":"Default",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":true,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":"F\/A-18E\/F Super Hornet (aircraft)"
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Default"
+                        }
+                    },
+                    {
+                        "title":"Basic information",
+                        "scanner":"Data",
+                        "id":"Basic:AircraftData",
+                        "position":200,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "microsources":{
+                                    "microsource":"AircraftData"
+                                },
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP875816cbd23e29bg8i5600001cc8a9ff21hbi9if?MSPStoreType=image\/gif&s=20",
+                                    "alt":"type | multirole fighter, strike fighter\nmanufacturer | Boeing Integrated Defense Systems",
+                                    "title":"type | multirole fighter, strike fighter\nmanufacturer | Boeing Integrated Defense Systems",
+                                    "width":368,
+                                    "height":70,
+                                    "type":"Grid",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":true,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":"type | multirole fighter, strike fighter\nmanufacturer | Boeing Integrated Defense Systems"
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Grid"
+                        }
+                    },
+                    {
+                        "title":"Image",
+                        "scanner":"Data",
+                        "id":"Image:AircraftData",
+                        "position":300,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "imagesource":"http:\/\/en.wikipedia.org\/wiki\/File:FA-18_Hornet_VFA-41.jpg",
+                                "microsources":{
+                                    "microsource":"AircraftData"
+                                },
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP875916cbd23e29bg8i560000460fa7g7d5b76gd2?MSPStoreType=image\/gif&s=20",
+                                    "alt":"Image",
+                                    "title":"",
+                                    "width":150,
+                                    "height":107,
+                                    "type":"Default",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":false,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":""
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Default"
+                        }
+                    },
+                    {
+                        "title":"General characteristics",
+                        "scanner":"Data",
+                        "id":"GeneralCharacteristics:AircraftData",
+                        "position":400,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "microsources":{
+                                    "microsource":"AircraftData"
+                                },
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP876016cbd23e29bg8i560000529348082ba4748c?MSPStoreType=image\/gif&s=20",
+                                    "alt":"crew | 2 people\nheight | 4.88 meters",
+                                    "title":"crew | 2 people\nheight | 4.88 meters",
+                                    "width":165,
+                                    "height":70,
+                                    "type":"Grid",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":true,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":"crew | 2 people\nheight | 4.88 meters"
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Grid"
+                        },
+                        "states":[
+                            {
+                                "name":"Show non-metric",
+                                "input":"GeneralCharacteristics:AircraftData__Show non-metric"
+                            },
+                            {
+                                "name":"More",
+                                "input":"GeneralCharacteristics:AircraftData__More"
+                            }
+                        ]
+                    },
+                    {
+                        "title":"Performance",
+                        "scanner":"Data",
+                        "id":"Performance:AircraftData",
+                        "position":500,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "microsources":{
+                                    "microsource":"AircraftData"
+                                },
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP876116cbd23e29bg8i560000559aac5ah7g0522d?MSPStoreType=image\/gif&s=20",
+                                    "alt":"range with maximum load | 2361 km (kilometers)\n1275 nmi (nautical miles)\nmaximum weight | 29900 kg (kilograms)\n33 sh tn (short tons)",
+                                    "title":"range with maximum load | 2361 km (kilometers)\n1275 nmi (nautical miles)\nmaximum weight | 29900 kg (kilograms)\n33 sh tn (short tons)",
+                                    "width":391,
+                                    "height":104,
+                                    "type":"Grid",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":true,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":"range with maximum load | 2361 km (kilometers)\n1275 nmi (nautical miles)\nmaximum weight | 29900 kg (kilograms)\n33 sh tn (short tons)"
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Grid"
+                        },
+                        "states":[
+                            {
+                                "name":"Show non-metric",
+                                "input":"Performance:AircraftData__Show non-metric"
+                            },
+                            {
+                                "name":"More",
+                                "input":"Performance:AircraftData__More"
+                            }
+                        ]
+                    },
+                    {
+                        "title":"History",
+                        "scanner":"Data",
+                        "id":"History:AircraftData",
+                        "position":600,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "microsources":{
+                                    "microsource":"AircraftData"
+                                },
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP876216cbd23e29bg8i5600003i14h6be83a350bh?MSPStoreType=image\/gif&s=20",
+                                    "alt":"name of designer | McDonnell Douglas\nnumber of aircraft built | 300\ndate of first flight | Wednesday, November 29, 1995 (26 years ago)",
+                                    "title":"name of designer | McDonnell Douglas\nnumber of aircraft built | 300\ndate of first flight | Wednesday, November 29, 1995 (26 years ago)",
+                                    "width":499,
+                                    "height":103,
+                                    "type":"Grid",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":true,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":"name of designer | McDonnell Douglas\nnumber of aircraft built | 300\ndate of first flight | Wednesday, November 29, 1995 (26 years ago)"
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Grid"
+                        }
+                    },
+                    {
+                        "title":"Wikipedia summary",
+                        "scanner":"Data",
+                        "id":"WikipediaSummary:AircraftData",
+                        "position":700,
+                        "error":false,
+                        "numsubpods":1,
+                        "subpods":[
+                            {
+                                "title":"",
+                                "img":{
+                                    "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP876316cbd23e29bg8i560000153fd12hgchdac31?MSPStoreType=image\/gif&s=20",
+                                    "alt":"The Boeing F\/A-18E and F\/A-18F Super Hornet are twin-engine, carrier-capable, multirole fighter aircraft variants based on the McDonnell Douglas F\/A-18 Hornet. The F\/A-18E single-seat and F\/A-18F tandem-seat variants are larger and more advanced derivatives of the F\/A-18C and D Hornet.",
+                                    "title":"The Boeing F\/A-18E and F\/A-18F Super Hornet are twin-engine, carrier-capable, multirole fighter aircraft variants based on the McDonnell Douglas F\/A-18 Hornet. The F\/A-18E single-seat and F\/A-18F tandem-seat variants are larger and more advanced derivatives of the F\/A-18C and D Hornet.",
+                                    "width":531,
+                                    "height":80,
+                                    "type":"Default",
+                                    "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                    "colorinvertable":true,
+                                    "contenttype":"image\/gif"
+                                },
+                                "plaintext":"The Boeing F\/A-18E and F\/A-18F Super Hornet are twin-engine, carrier-capable, multirole fighter aircraft variants based on the McDonnell Douglas F\/A-18 Hornet. The F\/A-18E single-seat and F\/A-18F tandem-seat variants are larger and more advanced derivatives of the F\/A-18C and D Hornet.",
+                                "infos":{
+                                    "links":{
+                                        "url":"http:\/\/en.wikipedia.org\/wiki\/F\/A-18E\/F_Super_Hornet",
+                                        "text":"Full entry"
+                                    }
+                                }
+                            }
+                        ],
+                        "expressiontypes":{
+                            "name":"Default"
+                        }
+                    }
+                ],
+                "sources":{
+                    "url":"https:\/\/www6b3.wolframalpha.com\/sources\/AircraftDataSourceInformationNotes.html",
+                    "text":"Aircraft data"
+                }
+            }
+        }"#).unwrap();
+
+    let j: FullApiResponse = serde_json::from_str(
+            r#"{
+                "queryresult":{
+                    "success":true,
+                    "error":false,
+                    "numpods":4,
+                    "datatypes":"Country,InternationalTransportation",
+                    "timedout":"",
+                    "timedoutpods":"",
+                    "timing":2.066,
+                    "parsetiming":1.091,
+                    "parsetimedout":false,
+                    "recalculate":"",
+                    "id":"MSP653223b3026c193d53hd00005eh25e39b775if6a",
+                    "host":"https:\/\/www6b3.wolframalpha.com",
+                    "server":"14",
+                    "related":"https:\/\/www6b3.wolframalpha.com\/api\/v1\/relatedQueries.jsp?id=MSPa653323b3026c193d53hd00003h0d3h4dhad1ceg04307842769377011871",
+                    "version":"2.6",
+                    "inputstring":"autos in use per road length in the UK",
+                    "pods":[
+                        {
+                            "title":"Input interpretation",
+                            "scanner":"Identity",
+                            "id":"Input",
+                            "position":100,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP653423b3026c193d53hd00002df5e85dega36dbg?MSPStoreType=image\/gif&s=14",
+                                        "alt":"United Kingdom | total vehicles in use per road length",
+                                        "title":"United Kingdom | total vehicles in use per road length",
+                                        "width":369,
+                                        "height":23,
+                                        "type":"Grid",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"United Kingdom | total vehicles in use per road length"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Grid"
+                            }
+                        },
+                        {
+                            "title":"Result",
+                            "scanner":"Data",
+                            "id":"Result",
+                            "position":200,
+                            "error":false,
+                            "numsubpods":1,
+                            "primary":true,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "microsources":{
+                                        "microsource":[
+                                            "CountryData",
+                                            "InternationalTransportationData"
+                                        ]
+                                    },
+                                    "datasources":{
+                                        "datasource":[
+                                            "InternationalRoadFederation",
+                                            "ResearchAndInnovativeTechnologyAdministrationBureauOfTransportationStatistics",
+                                            "USDepartmentOfTransportationFederalHighwayAdministration",
+                                            "EurostatTransportationStatistics"
+                                        ]
+                                    },
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP653523b3026c193d53hd00001220dh4hgd658aa8?MSPStoreType=image\/gif&s=14",
+                                        "alt":"80 vehicles per kilometer (2005 estimate)",
+                                        "title":"80 vehicles per kilometer (2005 estimate)",
+                                        "width":264,
+                                        "height":19,
+                                        "type":"Default",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"80 vehicles per kilometer (2005 estimate)"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Default"
+                            },
+                            "states":[
+                                {
+                                    "name":"Show non-metric",
+                                    "input":"Result__Show non-metric"
+                                }
+                            ]
+                        },
+                        {
+                            "title":"History",
+                            "scanner":"Data",
+                            "id":"History:VehiclesInUseTotalPerKilometersOfRoads:InternationalTransportationData",
+                            "position":300,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "microsources":{
+                                        "microsource":"InternationalTransportationData"
+                                    },
+                                    "datasources":{
+                                        "datasource":[
+                                            "InternationalRoadFederation",
+                                            "ResearchAndInnovativeTechnologyAdministrationBureauOfTransportationStatistics",
+                                            "USDepartmentOfTransportationFederalHighwayAdministration",
+                                            "EurostatTransportationStatistics"
+                                        ]
+                                    },
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP653623b3026c193d53hd0000691gb3add3279he8?MSPStoreType=image\/gif&s=14",
+                                        "alt":"History",
+                                        "title":"",
+                                        "width":408,
+                                        "height":160,
+                                        "type":"TimeSeriesPlot_1",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":""
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Default"
+                            }
+                        },
+                        {
+                            "title":"Vehicles in use",
+                            "scanner":"Data",
+                            "id":"VehiclesInUse:InternationalTransportationData",
+                            "position":400,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "microsources":{
+                                        "microsource":"InternationalTransportationData"
+                                    },
+                                    "datasources":{
+                                        "datasource":[
+                                            "InternationalRoadFederation",
+                                            "ResearchAndInnovativeTechnologyAdministrationBureauOfTransportationStatistics",
+                                            "USDepartmentOfTransportationFederalHighwayAdministration",
+                                            "EurostatTransportationStatistics"
+                                        ]
+                                    },
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP653723b3026c193d53hd000068173hf37fb1b776?MSPStoreType=image\/gif&s=14",
+                                        "alt":"passenger cars | 27.5 million cars (2005 estimate)\ntrucks and vans | 3.4 million vehicles (2005 estimate)\nbuses | 178000 buses (2005 estimate)\nmotorcycles | 1.2 million motorcycles (2005 estimate)\ntotal | 32.3 million vehicles (2005 estimate)",
+                                        "title":"passenger cars | 27.5 million cars (2005 estimate)\ntrucks and vans | 3.4 million vehicles (2005 estimate)\nbuses | 178000 buses (2005 estimate)\nmotorcycles | 1.2 million motorcycles (2005 estimate)\ntotal | 32.3 million vehicles (2005 estimate)",
+                                        "width":401,
+                                        "height":169,
+                                        "type":"Grid",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"passenger cars | 27.5 million cars (2005 estimate)\ntrucks and vans | 3.4 million vehicles (2005 estimate)\nbuses | 178000 buses (2005 estimate)\nmotorcycles | 1.2 million motorcycles (2005 estimate)\ntotal | 32.3 million vehicles (2005 estimate)"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Grid"
+                            },
+                            "states":[
+                                {
+                                    "count":3,
+                                    "value":"Total number",
+                                    "delimiters":"",
+                                    "states":[
+                                        {
+                                            "name":"Total number",
+                                            "input":"VehiclesInUse:InternationalTransportationData__Total number"
+                                        },
+                                        {
+                                            "name":"Per population",
+                                            "input":"VehiclesInUse:InternationalTransportationData__Per population"
+                                        },
+                                        {
+                                            "name":"Per road length",
+                                            "input":"VehiclesInUse:InternationalTransportationData__Per road length"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "sources":[
+                        {
+                            "url":"https:\/\/www6b3.wolframalpha.com\/sources\/CountryDataSourceInformationNotes.html",
+                            "text":"Country data"
+                        },
+                        {
+                            "url":"https:\/\/www6b3.wolframalpha.com\/sources\/InternationalTransportationDataSourceInformationNotes.html",
+                            "text":"International transportation data"
+                        }
+                    ]
+                }
+            }"#).unwrap();
+
+            let k: FullApiResponse = serde_json::from_str(r#"{
+                "queryresult":{
+                    "success":true,
+                    "error":false,
+                    "numpods":7,
+                    "datatypes":"ExpandedFood,Formula",
+                    "timedout":"",
+                    "timedoutpods":"",
+                    "timing":2.054,
+                    "parsetiming":0.638,
+                    "parsetimedout":false,
+                    "recalculate":"",
+                    "id":"MSP43216cbdah0781aeec10000165aa88ha5i33ha4",
+                    "host":"https:\/\/www6b3.wolframalpha.com",
+                    "server":"20",
+                    "related":"https:\/\/www6b3.wolframalpha.com\/api\/v1\/relatedQueries.jsp?id=MSPa43316cbdah0781aeec100002218685e3g26g7bd8458888475783217078",
+                    "version":"2.6",
+                    "inputstring":"how many people does a 20 pound turkey feed",
+                    "pods":[
+                        {
+                            "title":"Input information",
+                            "scanner":"Formula",
+                            "id":"Input",
+                            "position":100,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP43416cbdah0781aeec100001i311881ahe08gi7?MSPStoreType=image\/gif&s=20",
+                                        "alt":"turkey portion counter | \nturkey weight | 20 lb (pounds)\nmeal proportions | light",
+                                        "title":"turkey portion counter | \nturkey weight | 20 lb (pounds)\nmeal proportions | light",
+                                        "width":252,
+                                        "height":103,
+                                        "type":"Grid",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"turkey portion counter | \nturkey weight | 20 lb (pounds)\nmeal proportions | light"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Grid"
+                            }
+                        },
+                        {
+                            "title":"Result",
+                            "scanner":"Formula",
+                            "id":"Result",
+                            "position":200,
+                            "error":false,
+                            "numsubpods":1,
+                            "primary":true,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "primary":true,
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP43516cbdah0781aeec100005eed5106f32058h2?MSPStoreType=image\/gif&s=20",
+                                        "alt":"number of adults | 20",
+                                        "title":"number of adults | 20",
+                                        "width":178,
+                                        "height":37,
+                                        "type":"Grid",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"number of adults | 20"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Grid"
+                            }
+                        },
+                        {
+                            "title":"Equation",
+                            "scanner":"Formula",
+                            "id":"Equation",
+                            "position":300,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP43616cbdah0781aeec1000011a75e88ifg59268?MSPStoreType=image\/gif&s=20",
+                                        "alt":"W = A P 1 lb | | \nA | number of adults\nW | turkey weight\nP | meal proportions\nlb | pound (≈ 0.4536 kg)",
+                                        "title":"W = A P 1 lb | | \nA | number of adults\nW | turkey weight\nP | meal proportions\nlb | pound (≈ 0.4536 kg)",
+                                        "width":194,
+                                        "height":170,
+                                        "type":"Grid",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"W = A P 1 lb | | \nA | number of adults\nW | turkey weight\nP | meal proportions\nlb | pound (≈ 0.4536 kg)"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Grid"
+                            }
+                        },
+                        {
+                            "title":"Thawing times",
+                            "scanner":"Formula",
+                            "id":"ThawingTimes",
+                            "position":400,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP43716cbdah0781aeec10000621g1f2eee9e53b6?MSPStoreType=image\/gif&s=20",
+                                        "alt":"thawing time in a refrigerator | 4 days\nthawing time in a cold water bath | 10 hours",
+                                        "title":"thawing time in a refrigerator | 4 days\nthawing time in a cold water bath | 10 hours",
+                                        "width":327,
+                                        "height":70,
+                                        "type":"Grid",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"thawing time in a refrigerator | 4 days\nthawing time in a cold water bath | 10 hours"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Grid"
+                            }
+                        },
+                        {
+                            "title":"Available meat",
+                            "scanner":"Formula",
+                            "id":"AvailableMeat",
+                            "position":500,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP43816cbdah0781aeec10000315deg342hfggeh0?MSPStoreType=image\/gif&s=20",
+                                        "alt":"8 lb (pounds)\n(assuming 40% of total weight is usable meat)",
+                                        "title":"8 lb (pounds)\n(assuming 40% of total weight is usable meat)",
+                                        "width":266,
+                                        "height":42,
+                                        "type":"Default",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"8 lb (pounds)\n(assuming 40% of total weight is usable meat)"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Default"
+                            },
+                            "states":[
+                                {
+                                    "name":"Show metric",
+                                    "input":"AvailableMeat__Show metric"
+                                }
+                            ]
+                        },
+                        {
+                            "title":"Cooking time",
+                            "scanner":"Formula",
+                            "id":"CookingTime",
+                            "position":600,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP43916cbdah0781aeec100004641bigh5570h842?MSPStoreType=image\/gif&s=20",
+                                        "alt":"4.5 hours\n(using the heat equation for a spherical turkey in a 325 °F oven at sea level)",
+                                        "title":"4.5 hours\n(using the heat equation for a spherical turkey in a 325 °F oven at sea level)",
+                                        "width":435,
+                                        "height":43,
+                                        "type":"Default",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"4.5 hours\n(using the heat equation for a spherical turkey in a 325 °F oven at sea level)"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Default"
+                            }
+                        },
+                        {
+                            "title":"Nutrition facts per adult portion",
+                            "scanner":"Formula",
+                            "id":"AdultPortions",
+                            "position":700,
+                            "error":false,
+                            "numsubpods":1,
+                            "subpods":[
+                                {
+                                    "title":"",
+                                    "microsources":{
+                                        "microsource":"ExpandedFoodData"
+                                    },
+                                    "img":{
+                                        "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP44016cbdah0781aeec1000052f97g1i4h5ib890?MSPStoreType=image\/gif&s=20",
+                                        "alt":"serving size 0.1814 kg (181 g)\ntotal calories 364 | fat calories 147\n% daily value^* | \n total fat 16 g | 25%\n saturated fat 5 g | 24%\n trans fat | \n cholesterol 158 mg | 53%\n sodium 124 mg | 5%\n total carbohydrates 0 g | 0%\n dietary fiber 0 g | 0%\n sugar 0 g | \n protein 51 g | 102%\n calcium 5% | iron 19% \n vitamin E 3% | thiamin 7% \n riboflavin 19% | niacin 45% \n vitamin B6 37% | vitamin B12 11% \n folate 3% | phosphorus 37% \n magnesium 11% | zinc 37% \n*percent daily values are based on a 2000 calorie diet\n(averaged over different types of turkey, roasted, with skin)",
+                                        "title":"serving size 0.1814 kg (181 g)\ntotal calories 364 | fat calories 147\n% daily value^* | \n total fat 16 g | 25%\n saturated fat 5 g | 24%\n trans fat | \n cholesterol 158 mg | 53%\n sodium 124 mg | 5%\n total carbohydrates 0 g | 0%\n dietary fiber 0 g | 0%\n sugar 0 g | \n protein 51 g | 102%\n calcium 5% | iron 19% \n vitamin E 3% | thiamin 7% \n riboflavin 19% | niacin 45% \n vitamin B6 37% | vitamin B12 11% \n folate 3% | phosphorus 37% \n magnesium 11% | zinc 37% \n*percent daily values are based on a 2000 calorie diet\n(averaged over different types of turkey, roasted, with skin)",
+                                        "width":349,
+                                        "height":495,
+                                        "type":"Default",
+                                        "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                        "colorinvertable":true,
+                                        "contenttype":"image\/gif"
+                                    },
+                                    "plaintext":"serving size 0.1814 kg (181 g)\ntotal calories 364 | fat calories 147\n% daily value^* | \n total fat 16 g | 25%\n saturated fat 5 g | 24%\n trans fat | \n cholesterol 158 mg | 53%\n sodium 124 mg | 5%\n total carbohydrates 0 g | 0%\n dietary fiber 0 g | 0%\n sugar 0 g | \n protein 51 g | 102%\n calcium 5% | iron 19% \n vitamin E 3% | thiamin 7% \n riboflavin 19% | niacin 45% \n vitamin B6 37% | vitamin B12 11% \n folate 3% | phosphorus 37% \n magnesium 11% | zinc 37% \n*percent daily values are based on a 2000 calorie diet\n(averaged over different types of turkey, roasted, with skin)"
+                                }
+                            ],
+                            "expressiontypes":{
+                                "name":"Default"
+                            }
+                        }
+                    ],
+                    "assumptions":[
+                        {
+                            "type":"FormulaVariable",
+                            "desc":"meal proportions",
+                            "current":"1",
+                            "count":2,
+                            "values":[
+                                {
+                                    "name":"Meal:Light",
+                                    "desc":"light",
+                                    "valid":"true",
+                                    "input":"*FP.TurkeyPortions.Type-_Meal%3ALight"
+                                },
+                                {
+                                    "name":"Meal:Heavy",
+                                    "desc":"heavy",
+                                    "valid":"true",
+                                    "input":"*FP.TurkeyPortions.Type-_Meal%3AHeavy"
+                                }
+                            ]
+                        },
+                        {
+                            "type":"FormulaVariableInclude",
+                            "template":"Also include ${desc1}",
+                            "count":2,
+                            "values":[
+                                {
+                                    "name":"TurkeyPortions.c",
+                                    "desc":"number of children",
+                                    "input":"*FVarOpt-_**TurkeyPortions.c--"
+                                },
+                                {
+                                    "name":"TurkeyPortions.t",
+                                    "desc":"number of teenagers",
+                                    "input":"*FVarOpt-_**TurkeyPortions.t--"
+                                }
+                            ]
+                        }
+                    ],
+                    "sources":{
+                        "url":"https:\/\/www6b3.wolframalpha.com\/sources\/ExpandedFoodDataSourceInformationNotes.html",
+                        "text":"Expanded food data"
+                    }
+                }
+            }"#).unwrap();
+
+            let l: FullApiResponse = serde_json::from_str(
+                r#"{
+                    "queryresult":{
+                        "success":true,
+                        "error":false,
+                        "numpods":11,
+                        "datatypes":"Chemical,Element",
+                        "timedout":"",
+                        "timedoutpods":"",
+                        "timing":2.469,
+                        "parsetiming":0.193,
+                        "parsetimedout":false,
+                        "recalculate":"",
+                        "id":"MSP3875147733a2gc7aaf02000068cc8ic8eg0348gb",
+                        "host":"https:\/\/www6b3.wolframalpha.com",
+                        "server":"16",
+                        "related":"https:\/\/www6b3.wolframalpha.com\/api\/v1\/relatedQueries.jsp?id=MSPa3876147733a2gc7aaf02000058fh7bcege707af38350669649384844499",
+                        "version":"2.6",
+                        "inputstring":"InChI=1\/C8H8O3\/c1-11-8-4-6(5-9)2-3-7(8)10\/h2-5,10H,1H3",
+                        "pods":[
+                            {
+                                "title":"Input interpretation",
+                                "scanner":"Identity",
+                                "id":"Input",
+                                "position":100,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3877147733a2gc7aaf02000030ii45gc524gf1e0?MSPStoreType=image\/gif&s=16",
+                                            "alt":"vanillin",
+                                            "title":"vanillin",
+                                            "width":50,
+                                            "height":19,
+                                            "type":"Default",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"vanillin"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Default"
+                                }
+                            },
+                            {
+                                "title":"Chemical names and formulas",
+                                "scanner":"Data",
+                                "id":"ChemicalNamesFormulas:ChemicalData",
+                                "position":200,
+                                "error":false,
+                                "numsubpods":1,
+                                "primary":true,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":"PubChem"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3878147733a2gc7aaf02000033dg0b9ea78dda1d?MSPStoreType=image\/gif&s=16",
+                                            "alt":"formula | (HO)C_6H_3(OCH_3)CHO\nHill formula | C_8H_8O_3\nname | vanillin\nIUPAC name | 4-hydroxy-3-methoxybenzaldehyde",
+                                            "title":"formula | (HO)C_6H_3(OCH_3)CHO\nHill formula | C_8H_8O_3\nname | vanillin\nIUPAC name | 4-hydroxy-3-methoxybenzaldehyde",
+                                            "width":375,
+                                            "height":138,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"formula | (HO)C_6H_3(OCH_3)CHO\nHill formula | C_8H_8O_3\nname | vanillin\nIUPAC name | 4-hydroxy-3-methoxybenzaldehyde"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                },
+                                "states":[
+                                    {
+                                        "name":"More",
+                                        "input":"ChemicalNamesFormulas:ChemicalData__More"
+                                    }
+                                ]
+                            },
+                            {
+                                "title":"Structure diagram",
+                                "scanner":"Data",
+                                "id":"StructureDiagramPod:ChemicalData",
+                                "position":300,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":"PubChem"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3879147733a2gc7aaf0200004513ed2gh2ad40ac?MSPStoreType=image\/gif&s=16",
+                                            "alt":"Structure diagram",
+                                            "title":"",
+                                            "width":183,
+                                            "height":130,
+                                            "type":"Default",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":""
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Default"
+                                },
+                                "states":[
+                                    {
+                                        "count":3,
+                                        "value":"Skeletal structure",
+                                        "delimiters":"",
+                                        "states":[
+                                            {
+                                                "name":"Skeletal structure",
+                                                "input":"StructureDiagramPod:ChemicalData__Skeletal structure"
+                                            },
+                                            {
+                                                "name":"All atoms",
+                                                "input":"StructureDiagramPod:ChemicalData__All atoms"
+                                            },
+                                            {
+                                                "name":"Lewis structure",
+                                                "input":"StructureDiagramPod:ChemicalData__Lewis structure"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name":"Show bond information",
+                                        "input":"StructureDiagramPod:ChemicalData__Show bond information"
+                                    },
+                                    {
+                                        "name":"Show graph properties",
+                                        "input":"StructureDiagramPod:ChemicalData__Show graph properties"
+                                    },
+                                    {
+                                        "name":"Step-by-step",
+                                        "input":"StructureDiagramPod:ChemicalData__Step-by-step",
+                                        "stepbystep":true
+                                    }
+                                ]
+                            },
+                            {
+                                "title":"3D structure",
+                                "scanner":"Data",
+                                "id":"3DStructure:ChemicalData",
+                                "position":400,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":"PubChem"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3880147733a2gc7aaf020000302d15fg85gf3dba?MSPStoreType=image\/gif&s=16",
+                                            "alt":"3D structure",
+                                            "title":"",
+                                            "width":400,
+                                            "height":254,
+                                            "type":"Default",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":false,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":""
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Default"
+                                },
+                                "states":[
+                                    {
+                                        "name":"Show bonds only",
+                                        "input":"3DStructure:ChemicalData__Show bonds only"
+                                    },
+                                    {
+                                        "name":"Show space filling model",
+                                        "input":"3DStructure:ChemicalData__Show space filling model"
+                                    }
+                                ]
+                            },
+                            {
+                                "title":"Basic properties",
+                                "scanner":"Data",
+                                "id":"Basic:ChemicalData",
+                                "position":500,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":[
+                                                "SOLV-DB",
+                                                "PubChem",
+                                                "CRCHandbook"
+                                            ]
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3881147733a2gc7aaf0200004ce3g3ggcahfi441?MSPStoreType=image\/gif&s=16",
+                                            "alt":"molar mass | 152.15 g\/mol\nphase | solid (at STP)\nmelting point | 82 °C\nboiling point | 170 °C (measured at 2000 Pa)\ndensity | 1.056 g\/cm^3",
+                                            "title":"molar mass | 152.15 g\/mol\nphase | solid (at STP)\nmelting point | 82 °C\nboiling point | 170 °C (measured at 2000 Pa)\ndensity | 1.056 g\/cm^3",
+                                            "width":312,
+                                            "height":169,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"molar mass | 152.15 g\/mol\nphase | solid (at STP)\nmelting point | 82 °C\nboiling point | 170 °C (measured at 2000 Pa)\ndensity | 1.056 g\/cm^3"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                },
+                                "states":[
+                                    {
+                                        "name":"Step-by-step",
+                                        "input":"Basic:ChemicalData__Step-by-step",
+                                        "stepbystep":true
+                                    }
+                                ],
+                                "infos":{
+                                    "units":[
+                                        [
+                                            {
+                                                "short":"g\/cm^3",
+                                                "long":"grams per cubic centimeter"
+                                            },
+                                            {
+                                                "short":"g\/mol",
+                                                "long":"grams per mole"
+                                            },
+                                            {
+                                                "short":"Pa",
+                                                "long":"pascals"
+                                            }
+                                        ],
+                                        {
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3882147733a2gc7aaf0200004ge86717eag4bf82?MSPStoreType=image\/gif&s=16",
+                                            "width":"234",
+                                            "height":"72"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "title":"Solid properties (at STP)",
+                                "scanner":"Data",
+                                "id":"SolidProperties:ChemicalData",
+                                "position":600,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":"CRCHandbook"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3883147733a2gc7aaf0200004f63a3ediegi6bh9?MSPStoreType=image\/gif&s=16",
+                                            "alt":"density | 1.056 g\/cm^3\nvapor pressure | 0.009998 mmHg\nrefractive index | 1.555",
+                                            "title":"density | 1.056 g\/cm^3\nvapor pressure | 0.009998 mmHg\nrefractive index | 1.555",
+                                            "width":257,
+                                            "height":103,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"density | 1.056 g\/cm^3\nvapor pressure | 0.009998 mmHg\nrefractive index | 1.555"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                }
+                            },
+                            {
+                                "title":"Thermodynamic properties",
+                                "scanner":"Data",
+                                "id":"Thermodynamics:ChemicalData",
+                                "position":700,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":[
+                                                "ChemicalData",
+                                                "ElementData"
+                                            ]
+                                        },
+                                        "datasources":{
+                                            "datasource":[
+                                                "PubChem",
+                                                "WebElements"
+                                            ]
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3884147733a2gc7aaf02000053ihi8804ea4e8ca?MSPStoreType=image\/gif&s=16",
+                                            "alt":"specific heat of vaporization | 0.357 kJ\/g\nspecific heat of combustion | 12.16 kJ\/g\n(at STP)",
+                                            "title":"specific heat of vaporization | 0.357 kJ\/g\nspecific heat of combustion | 12.16 kJ\/g\n(at STP)",
+                                            "width":296,
+                                            "height":95,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"specific heat of vaporization | 0.357 kJ\/g\nspecific heat of combustion | 12.16 kJ\/g\n(at STP)"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                },
+                                "states":[
+                                    {
+                                        "name":"More",
+                                        "input":"Thermodynamics:ChemicalData__More"
+                                    }
+                                ],
+                                "infos":{
+                                    "units":[
+                                        {
+                                            "short":"kJ\/g",
+                                            "long":"kilojoules per gram"
+                                        },
+                                        {
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3885147733a2gc7aaf02000026i0436f6ef9394a?MSPStoreType=image\/gif&s=16",
+                                            "width":"172",
+                                            "height":"27"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "title":"Chemical identifiers",
+                                "scanner":"Data",
+                                "id":"ChemicalIdentifiers:ChemicalData",
+                                "position":800,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":"PubChem"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3886147733a2gc7aaf02000060h507die63id7ed?MSPStoreType=image\/gif&s=16",
+                                            "alt":"CAS number | 121-33-5\nBeilstein number | 472792\nPubChem CID number | 1183\nPubChem SID number | 24900708\nSMILES identifier | COC1=C(C=CC(=C1)C=O)O",
+                                            "title":"CAS number | 121-33-5\nBeilstein number | 472792\nPubChem CID number | 1183\nPubChem SID number | 24900708\nSMILES identifier | COC1=C(C=CC(=C1)C=O)O",
+                                            "width":375,
+                                            "height":169,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"CAS number | 121-33-5\nBeilstein number | 472792\nPubChem CID number | 1183\nPubChem SID number | 24900708\nSMILES identifier | COC1=C(C=CC(=C1)C=O)O"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                },
+                                "states":[
+                                    {
+                                        "name":"More",
+                                        "input":"ChemicalIdentifiers:ChemicalData__More"
+                                    }
+                                ]
+                            },
+                            {
+                                "title":"NFPA label",
+                                "scanner":"Data",
+                                "id":"NFPALabel:ChemicalData",
+                                "position":900,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3887147733a2gc7aaf0200005d2agd177d0d85ai?MSPStoreType=image\/gif&s=16",
+                                            "alt":"NFPA label",
+                                            "title":"",
+                                            "width":40,
+                                            "height":40,
+                                            "type":"Default",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":""
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Default"
+                                },
+                                "states":[
+                                    {
+                                        "name":"Table",
+                                        "input":"NFPALabel:ChemicalData__Table"
+                                    }
+                                ]
+                            },
+                            {
+                                "title":"Safety properties",
+                                "scanner":"Data",
+                                "id":"SafetyProperties:ChemicalData",
+                                "position":1000,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3888147733a2gc7aaf02000068icb0biadfh28f0?MSPStoreType=image\/gif&s=16",
+                                            "alt":"flash point | 118 °C\nautoignition point | 400 °C\nlower explosive limit | 1.2% (concentration in air)\nupper explosive limit | 8.8% (concentration in air)",
+                                            "title":"flash point | 118 °C\nautoignition point | 400 °C\nlower explosive limit | 1.2% (concentration in air)\nupper explosive limit | 8.8% (concentration in air)",
+                                            "width":341,
+                                            "height":136,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"flash point | 118 °C\nautoignition point | 400 °C\nlower explosive limit | 1.2% (concentration in air)\nupper explosive limit | 8.8% (concentration in air)"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                }
+                            },
+                            {
+                                "title":"Toxicity properties",
+                                "scanner":"Data",
+                                "id":"ToxicityProperties:ChemicalData",
+                                "position":1100,
+                                "error":false,
+                                "numsubpods":1,
+                                "subpods":[
+                                    {
+                                        "title":"",
+                                        "microsources":{
+                                            "microsource":"ChemicalData"
+                                        },
+                                        "datasources":{
+                                            "datasource":"MacmillansChemicalAndPhysicalData"
+                                        },
+                                        "img":{
+                                            "src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP3889147733a2gc7aaf0200004g0db708055134fg?MSPStoreType=image\/gif&s=16",
+                                            "alt":"RTECS classes | mutagen | reproductive effector | natural product",
+                                            "title":"RTECS classes | mutagen | reproductive effector | natural product",
+                                            "width":490,
+                                            "height":37,
+                                            "type":"Grid",
+                                            "themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+                                            "colorinvertable":true,
+                                            "contenttype":"image\/gif"
+                                        },
+                                        "plaintext":"RTECS classes | mutagen | reproductive effector | natural product"
+                                    }
+                                ],
+                                "expressiontypes":{
+                                    "name":"Grid"
+                                }
+                            }
+                        ],
+                        "sources":[
+                            {
+                                "url":"https:\/\/www6b3.wolframalpha.com\/sources\/ChemicalDataSourceInformationNotes.html",
+                                "text":"Chemical data"
+                            },
+                            {
+                                "url":"https:\/\/www6b3.wolframalpha.com\/sources\/ElementDataSourceInformationNotes.html",
+                                "text":"Element data"
+                            }
+                        ]
+                    }
+                }"#).unwrap();
 }

@@ -22,10 +22,12 @@ pub struct Pod {
 pub struct SubPod {
     title: String,
     primary: Option<bool>,
+    imagesource: Option<String>,
     microsources: Option<MicroSource>,
     datasources: Option<DataSource>,
     img: Image,
     plaintext: String,
+    infos: Option<Info>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -127,7 +129,14 @@ pub struct Info {
     units: Option<Vec<UnitsWrapper>>,
     text: Option<String>,
     img: Option<Image>,
-    links: Option<Vec<Link>>,
+    links: Option<LinksWrapper>,
+}
+
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+#[serde(untagged)]
+pub enum LinksWrapper {
+    Single(Link),
+    Multi(Vec<Link>),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -135,7 +144,7 @@ pub struct Info {
 pub struct Link {
     url: String,
     text: String,
-    title: String,
+    title: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -178,5 +187,5 @@ pub struct Definition {
 #[serde(untagged)]
 pub enum DefinitionsWrapper {
     Single(Definition),
-    Multi(Vec<Definition>)
+    Multi(Vec<Definition>),
 }
