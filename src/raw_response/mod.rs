@@ -94,13 +94,13 @@ pub struct Source {
 
 #[derive(Debug, Clone, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
-pub struct FullApiResponse {
+pub struct RawApiResponse {
     queryresult: QueryResult,
 }
 
 #[test]
-fn full_api_response_deserialize() {
-    let a: FullApiResponse = serde_json::from_str(
+fn raw_api_response_deserialize() {
+    let a: RawApiResponse = serde_json::from_str(
         r#"{
 	"queryresult":{
 		"success":false,
@@ -128,7 +128,7 @@ fn full_api_response_deserialize() {
     )
     .unwrap();
 
-    let b: FullApiResponse = serde_json::from_str(
+    let b: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -494,7 +494,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let c: FullApiResponse = serde_json::from_str(
+    let c: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -866,7 +866,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let d: FullApiResponse = serde_json::from_str(
+    let d: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -1076,7 +1076,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let e: FullApiResponse = serde_json::from_str(
+    let e: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -1413,7 +1413,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let f: FullApiResponse = serde_json::from_str(
+    let f: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -1645,7 +1645,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let g: FullApiResponse = serde_json::from_str(
+    let g: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -1922,7 +1922,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let h: FullApiResponse = serde_json::from_str(
+    let h: RawApiResponse = serde_json::from_str(
 r#"{
 	"queryresult":{
 		"success":true,
@@ -2425,7 +2425,7 @@ r#"{
 }"#
     ).unwrap();
 
-    let i: FullApiResponse = serde_json::from_str(
+    let i: RawApiResponse = serde_json::from_str(
         r#"{
             "queryresult":{
                 "success":true,
@@ -2691,7 +2691,7 @@ r#"{
             }
         }"#).unwrap();
 
-    let j: FullApiResponse = serde_json::from_str(
+    let j: RawApiResponse = serde_json::from_str(
             r#"{
                 "queryresult":{
                     "success":true,
@@ -2901,7 +2901,7 @@ r#"{
                 }
             }"#).unwrap();
 
-            let k: FullApiResponse = serde_json::from_str(r#"{
+    let k: RawApiResponse = serde_json::from_str(r#"{
                 "queryresult":{
                     "success":true,
                     "error":false,
@@ -3174,7 +3174,7 @@ r#"{
                 }
             }"#).unwrap();
 
-            let l: FullApiResponse = serde_json::from_str(
+    let l: RawApiResponse = serde_json::from_str(
                 r#"{
                     "queryresult":{
                         "success":true,
@@ -3691,4 +3691,296 @@ r#"{
                         ]
                     }
                 }"#).unwrap();
+
+    let m: RawApiResponse = serde_json::from_str(r#"{
+					"queryresult":{
+						"success":true,
+						"error":false,
+						"numpods":6,
+						"datatypes":"Agriculture,Country",
+						"timedout":"Identity,Data,Percent,Unit,AtmosphericProperties,UnitInformation,Music,Geometry",
+						"timedoutpods":"",
+						"timing":8.735,
+						"parsetiming":0.505,
+						"parsetimedout":false,
+						"recalculate":"https:\/\/www6b3.wolframalpha.com\/api\/v1\/recalc.jsp?id=MSPa401019a612230cfec83300005gb18ih9e96h41ha1697175660060143921&output=JSON",
+						"id":"MSP401119a612230cfec83300001cgeda674bb68928",
+						"host":"https:\/\/www6b3.wolframalpha.com",
+						"server":"18",
+						"related":"https:\/\/www6b3.wolframalpha.com\/api\/v1\/relatedQueries.jsp?id=MSPa401219a612230cfec83300002e41hg4092e8a4b01697175660060143921",
+						"version":"2.6",
+						"inputstring":"corn production",
+						"pods":[
+							{
+								"title":"Input interpretation",
+								"scanner":"Identity",
+								"id":"Input",
+								"position":100,
+								"error":false,
+								"numsubpods":1,
+								"subpods":[
+									{
+										"title":"",
+										"img":{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401319a612230cfec833000048cd5dda8hac2g2g?MSPStoreType=image\/gif&s=18",
+											"alt":"all countries, dependencies, and territories | production | corn",
+											"title":"all countries, dependencies, and territories | production | corn",
+											"width":465,
+											"height":33,
+											"type":"Grid",
+											"themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+											"colorinvertable":true,
+											"contenttype":"image\/gif"
+										},
+										"plaintext":"all countries, dependencies, and territories | production | corn"
+									}
+								],
+								"expressiontypes":{
+									"name":"Grid"
+								}
+							},
+							{
+								"title":"Summary",
+								"scanner":"Data",
+								"id":"Result",
+								"position":200,
+								"error":false,
+								"numsubpods":1,
+								"primary":true,
+								"subpods":[
+									{
+										"title":"",
+										"microsources":{
+											"microsource":"AgricultureData"
+										},
+										"datasources":{
+											"datasource":"FoodAndAgricultureOrganizationOfTheUnitedNationsFoodProductionFAOSTAT"
+										},
+										"img":{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401419a612230cfec83300002113dg1e029387ii?MSPStoreType=image\/gif&s=18",
+											"alt":"total | 1.149 billion t\/yr\nmean | 6.452 million t\/yr\nhighest | 347 million t\/yr (United States) | (1977, 1980, 2016, and 2019 estimates)\n(based on 178 values; 71 unavailable)",
+											"title":"total | 1.149 billion t\/yr\nmean | 6.452 million t\/yr\nhighest | 347 million t\/yr (United States) | (1977, 1980, 2016, and 2019 estimates)\n(based on 178 values; 71 unavailable)",
+											"width":531,
+											"height":104,
+											"type":"Grid",
+											"themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+											"colorinvertable":true,
+											"contenttype":"image\/gif"
+										},
+										"plaintext":"total | 1.149 billion t\/yr\nmean | 6.452 million t\/yr\nhighest | 347 million t\/yr (United States) | (1977, 1980, 2016, and 2019 estimates)\n(based on 178 values; 71 unavailable)"
+									}
+								],
+								"expressiontypes":{
+									"name":"Grid"
+								},
+								"states":[
+									{
+										"name":"Show non-metric",
+										"input":"Result__Show non-metric"
+									},
+									{
+										"name":"Show details",
+										"input":"Result__Show details"
+									}
+								],
+								"infos":{
+									"units":[
+										{
+											"short":"t\/yr",
+											"long":"metric tons per year"
+										},
+										{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401519a612230cfec833000055bd3b6ii71be064?MSPStoreType=image\/gif&s=18",
+											"width":"180",
+											"height":"27"
+										}
+									]
+								}
+							},
+							{
+								"title":"Corn production map",
+								"scanner":"Data",
+								"id":"PropertyMap:AgricultureProduction:AgricultureData",
+								"position":300,
+								"error":false,
+								"numsubpods":1,
+								"subpods":[
+									{
+										"title":"",
+										"microsources":{
+											"microsource":[
+												"AgricultureData",
+												"CountryData"
+											]
+										},
+										"datasources":{
+											"datasource":[
+												"FoodAndAgricultureOrganizationOfTheUnitedNationsFoodProductionFAOSTAT",
+												"CIAFactbook"
+											]
+										},
+										"img":{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401619a612230cfec83300001b15ec54b5dfafaf?MSPStoreType=image\/gif&s=18",
+											"alt":"Corn production map",
+											"title":"",
+											"width":491,
+											"height":337,
+											"type":"Grid",
+											"themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+											"colorinvertable":false,
+											"contenttype":"image\/gif"
+										},
+										"plaintext":""
+									}
+								],
+								"expressiontypes":{
+									"name":"Default"
+								}
+							},
+							{
+								"title":"Distribution plots",
+								"scanner":"Data",
+								"id":"DistributionPlots",
+								"position":400,
+								"error":false,
+								"numsubpods":1,
+								"subpods":[
+									{
+										"title":"",
+										"img":{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401719a612230cfec833000045ee7gfe5eigf4h3?MSPStoreType=image\/gif&s=18",
+											"alt":" \n(corn production in thousands of metric tons per year)",
+											"title":" \n(corn production in thousands of metric tons per year)",
+											"width":451,
+											"height":184,
+											"type":"Default",
+											"themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+											"colorinvertable":true,
+											"contenttype":"image\/gif"
+										},
+										"plaintext":" \n(corn production in thousands of metric tons per year)"
+									}
+								],
+								"expressiontypes":{
+									"name":"Default"
+								}
+							},
+							{
+								"title":"Corn production rankings",
+								"scanner":"Data",
+								"id":"PropertyRanking:AgricultureData",
+								"position":500,
+								"error":false,
+								"numsubpods":1,
+								"subpods":[
+									{
+										"title":"",
+										"microsources":{
+											"microsource":"AgricultureData"
+										},
+										"datasources":{
+											"datasource":"FoodAndAgricultureOrganizationOfTheUnitedNationsFoodProductionFAOSTAT"
+										},
+										"img":{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401819a612230cfec833000016cb77ibggf5h6hd?MSPStoreType=image\/gif&s=18",
+											"alt":"1 | United States | 347 million t\/yr\n2 | China | 260.8 million t\/yr\n3 | Brazil | 101.1 million t\/yr\n4 | Argentina | 56.86 million t\/yr\n5 | Ukraine | 35.88 million t\/yr\n⋮ | | \n168 | Antigua and Barbuda | 80 t\/yr\n169 | Guam | 50 t\/yr\n170 | Barbados | 42 t\/yr\n171 | Puerto Rico | 38 t\/yr\n172 | Djibouti | 21 t\/yr\n(1977, 1980, 2016, and 2019 estimates)\n(based on 172 values; 77 unavailable)",
+											"title":"1 | United States | 347 million t\/yr\n2 | China | 260.8 million t\/yr\n3 | Brazil | 101.1 million t\/yr\n4 | Argentina | 56.86 million t\/yr\n5 | Ukraine | 35.88 million t\/yr\n⋮ | | \n168 | Antigua and Barbuda | 80 t\/yr\n169 | Guam | 50 t\/yr\n170 | Barbados | 42 t\/yr\n171 | Puerto Rico | 38 t\/yr\n172 | Djibouti | 21 t\/yr\n(1977, 1980, 2016, and 2019 estimates)\n(based on 172 values; 77 unavailable)",
+											"width":346,
+											"height":406,
+											"type":"Grid",
+											"themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+											"colorinvertable":true,
+											"contenttype":"image\/gif"
+										},
+										"plaintext":"1 | United States | 347 million t\/yr\n2 | China | 260.8 million t\/yr\n3 | Brazil | 101.1 million t\/yr\n4 | Argentina | 56.86 million t\/yr\n5 | Ukraine | 35.88 million t\/yr\n⋮ | | \n168 | Antigua and Barbuda | 80 t\/yr\n169 | Guam | 50 t\/yr\n170 | Barbados | 42 t\/yr\n171 | Puerto Rico | 38 t\/yr\n172 | Djibouti | 21 t\/yr\n(1977, 1980, 2016, and 2019 estimates)\n(based on 172 values; 77 unavailable)"
+									}
+								],
+								"expressiontypes":{
+									"name":"Grid"
+								},
+								"states":[
+									{
+										"name":"More",
+										"input":"PropertyRanking:AgricultureData__More"
+									},
+									{
+										"name":"Reverse",
+										"input":"PropertyRanking:AgricultureData__Reverse"
+									},
+									{
+										"name":"Show non-metric",
+										"input":"PropertyRanking:AgricultureData__Show non-metric"
+									}
+								],
+								"infos":{
+									"units":[
+										{
+											"short":"t\/yr",
+											"long":"metric tons per year"
+										},
+										{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP401919a612230cfec83300002b9fb198c06g010c?MSPStoreType=image\/gif&s=18",
+											"width":"180",
+											"height":"27"
+										}
+									]
+								}
+							},
+							{
+								"title":"Food production",
+								"scanner":"Data",
+								"id":"FoodProduction:AgricultureData",
+								"position":600,
+								"error":false,
+								"numsubpods":1,
+								"subpods":[
+									{
+										"title":"Common foods",
+										"microsources":{
+											"microsource":"AgricultureData"
+										},
+										"datasources":{
+											"datasource":"FoodAndAgricultureOrganizationOfTheUnitedNationsFoodProductionFAOSTAT"
+										},
+										"img":{
+											"src":"https:\/\/www6b3.wolframalpha.com\/Calculate\/MSP\/MSP402019a612230cfec83300003a60g5hcd73a16ig?MSPStoreType=image\/gif&s=18",
+											"alt":"beans | total | 26.87 million t\/yr (metric tons per year)\n | mean | 205133 t\/yr (metric tons per year)\n | highest | 5.19 million t\/yr (metric tons per year) (Myanmar)\n | lowest | 1 t\/yr (metric ton per year) (Czech Republic)\ncoffee | total | 10.04 million t\/yr (metric tons per year)\n | mean | 118104 t\/yr (metric tons per year)\n | highest | 3.009 million t\/yr (metric tons per year) (Brazil)\neggs | total | 88.36 million t\/yr (metric tons per year)\n | mean | 424805 t\/yr (metric tons per year)\n | highest | 33.09 million t\/yr (metric tons per year) (China)\n | lowest | 7 t\/yr (metric tons per year) (Cayman Islands)\nmilk | total | 880.9 million t\/yr (metric tons per year)\n | mean | 4.427 million t\/yr (metric tons per year)\n | highest | 187.6 million t\/yr (metric tons per year) (India)\n | lowest | 30 t\/yr (metric tons per year) (Wallis and Futuna Islands)\nwheat | total | 765.8 million t\/yr (metric tons per year)\n | mean | 6.126 million t\/yr (metric tons per year)\n | highest | 133.6 million t\/yr (metric tons per year) (China)\n(1964 to 2019 estimates)",
+											"title":"beans | total | 26.87 million t\/yr (metric tons per year)\n | mean | 205133 t\/yr (metric tons per year)\n | highest | 5.19 million t\/yr (metric tons per year) (Myanmar)\n | lowest | 1 t\/yr (metric ton per year) (Czech Republic)\ncoffee | total | 10.04 million t\/yr (metric tons per year)\n | mean | 118104 t\/yr (metric tons per year)\n | highest | 3.009 million t\/yr (metric tons per year) (Brazil)\neggs | total | 88.36 million t\/yr (metric tons per year)\n | mean | 424805 t\/yr (metric tons per year)\n | highest | 33.09 million t\/yr (metric tons per year) (China)\n | lowest | 7 t\/yr (metric tons per year) (Cayman Islands)\nmilk | total | 880.9 million t\/yr (metric tons per year)\n | mean | 4.427 million t\/yr (metric tons per year)\n | highest | 187.6 million t\/yr (metric tons per year) (India)\n | lowest | 30 t\/yr (metric tons per year) (Wallis and Futuna Islands)\nwheat | total | 765.8 million t\/yr (metric tons per year)\n | mean | 6.126 million t\/yr (metric tons per year)\n | highest | 133.6 million t\/yr (metric tons per year) (China)\n(1964 to 2019 estimates)",
+											"width":535,
+											"height":571,
+											"type":"Grid",
+											"themes":"1,2,3,4,5,6,7,8,9,10,11,12",
+											"colorinvertable":true,
+											"contenttype":"image\/gif"
+										},
+										"plaintext":"beans | total | 26.87 million t\/yr (metric tons per year)\n | mean | 205133 t\/yr (metric tons per year)\n | highest | 5.19 million t\/yr (metric tons per year) (Myanmar)\n | lowest | 1 t\/yr (metric ton per year) (Czech Republic)\ncoffee | total | 10.04 million t\/yr (metric tons per year)\n | mean | 118104 t\/yr (metric tons per year)\n | highest | 3.009 million t\/yr (metric tons per year) (Brazil)\neggs | total | 88.36 million t\/yr (metric tons per year)\n | mean | 424805 t\/yr (metric tons per year)\n | highest | 33.09 million t\/yr (metric tons per year) (China)\n | lowest | 7 t\/yr (metric tons per year) (Cayman Islands)\nmilk | total | 880.9 million t\/yr (metric tons per year)\n | mean | 4.427 million t\/yr (metric tons per year)\n | highest | 187.6 million t\/yr (metric tons per year) (India)\n | lowest | 30 t\/yr (metric tons per year) (Wallis and Futuna Islands)\nwheat | total | 765.8 million t\/yr (metric tons per year)\n | mean | 6.126 million t\/yr (metric tons per year)\n | highest | 133.6 million t\/yr (metric tons per year) (China)\n(1964 to 2019 estimates)"
+									}
+								],
+								"expressiontypes":{
+									"name":"Grid"
+								},
+								"states":[
+									{
+										"name":"More",
+										"input":"FoodProduction:AgricultureData__More"
+									},
+									{
+										"name":"Show non-metric",
+										"input":"FoodProduction:AgricultureData__Show non-metric"
+									}
+								]
+							}
+						],
+						"sources":[
+							{
+								"url":"https:\/\/www6b3.wolframalpha.com\/sources\/AgricultureDataSourceInformationNotes.html",
+								"text":"Agriculture data"
+							},
+							{
+								"url":"https:\/\/www6b3.wolframalpha.com\/sources\/CountryDataSourceInformationNotes.html",
+								"text":"Country data"
+							}
+						]
+					}
+				}"#).unwrap();
 }
