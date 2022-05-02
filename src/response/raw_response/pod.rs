@@ -1,39 +1,38 @@
 use serde::Deserialize;
-use std::convert;
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Pod {
+pub struct RawPod {
     title: String,
     scanner: String,
     id: String,
     position: i32,
     error: bool,
     numsubpods: i32,
-    subpods: Vec<SubPod>,
-    expressiontypes: ExpressionTypesWrapper,
-    states: Option<Vec<StateWrapper>>,
-    infos: Option<Info>,
+    subpods: Vec<RawSubPod>,
+    expressiontypes: RawExpressionTypesWrapper,
+    states: Option<Vec<RawStateWrapper>>,
+    infos: Option<RawInfo>,
     primary: Option<bool>,
-    definitions: Option<DefinitionsWrapper>,
+    definitions: Option<RawDefinitionsWrapper>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct SubPod {
+pub struct RawSubPod {
     title: String,
     primary: Option<bool>,
     imagesource: Option<String>,
-    microsources: Option<MicroSource>,
-    datasources: Option<DataSource>,
-    img: Image,
+    microsources: Option<RawMicroSource>,
+    datasources: Option<RawDataSource>,
+    img: RawImage,
     plaintext: String,
-    infos: Option<Info>,
+    infos: Option<RawInfo>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Image {
+pub struct RawImage {
     src: String,
     alt: String,
     title: String,
@@ -63,53 +62,53 @@ impl I32OrString {
 
 #[derive(Debug, Clone, Deserialize, PartialEq)]
 #[serde(untagged)]
-pub enum ExpressionTypesWrapper {
-    Single(ExpressionType),
-    Multi(Vec<ExpressionType>),
+pub enum RawExpressionTypesWrapper {
+    Single(RawExpressionType),
+    Multi(Vec<RawExpressionType>),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct ExpressionType {
+pub struct RawExpressionType {
     name: String,
 }
 
 #[derive(Debug, Clone, Deserialize, PartialEq)]
 #[serde(untagged)]
-pub enum MicroSourceWrapper {
+pub enum RawMicroSourceWrapper {
     Single(String),
     Multi(Vec<String>),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct MicroSource {
-    microsource: MicroSourceWrapper,
+pub struct RawMicroSource {
+    microsource: RawMicroSourceWrapper,
 }
 
 #[derive(Debug, Clone, Deserialize, PartialEq)]
 #[serde(untagged)]
-pub enum DataSourceWrapper {
+pub enum RawDataSourceWrapper {
     Single(String),
     Multi(Vec<String>),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct DataSource {
-    datasource: DataSourceWrapper,
+pub struct RawDataSource {
+    datasource: RawDataSourceWrapper,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
-pub enum StateWrapper {
-    Single(State),
-    Multi(MultiState),
+pub enum RawStateWrapper {
+    Single(RawState),
+    Multi(RawMultiState),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct State {
+pub struct RawState {
     name: String,
     input: String,
     stepbystep: Option<bool>,
@@ -117,32 +116,32 @@ pub struct State {
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct MultiState {
+pub struct RawMultiState {
     count: i32,
     value: String,
     delimiters: String,
-    states: Vec<State>,
+    states: Vec<RawState>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Info {
-    units: Option<Vec<UnitsWrapper>>,
+pub struct RawInfo {
+    units: Option<Vec<RawUnitsWrapper>>,
     text: Option<String>,
-    img: Option<Image>,
-    links: Option<LinksWrapper>,
+    img: Option<RawImage>,
+    links: Option<RawLinksWrapper>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
-pub enum LinksWrapper {
-    Single(Link),
-    Multi(Vec<Link>),
+pub enum RawLinksWrapper {
+    Single(RawLink),
+    Multi(Vec<RawLink>),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Link {
+pub struct RawLink {
     url: String,
     text: String,
     title: Option<String>,
@@ -150,28 +149,28 @@ pub struct Link {
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
-pub enum UnitsWrapper {
-    TimeUnit(TimeUnitWrapper),
-    Src(UnitSource),
+pub enum RawUnitsWrapper {
+    TimeUnit(RawTimeUnitWrapper),
+    Src(RawUnitSource),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
-pub enum TimeUnitWrapper {
-    Single(TimeUnit),
-    Multi(Vec<TimeUnit>),
+pub enum RawTimeUnitWrapper {
+    Single(RawTimeUnit),
+    Multi(Vec<RawTimeUnit>),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct TimeUnit {
+pub struct RawTimeUnit {
     short: String,
     long: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct UnitSource {
+pub struct RawUnitSource {
     src: String,
     width: String,
     height: String,
@@ -179,14 +178,14 @@ pub struct UnitSource {
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct Definition {
+pub struct RawDefinition {
     word: String,
     desc: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
-pub enum DefinitionsWrapper {
-    Single(Definition),
-    Multi(Vec<Definition>),
+pub enum RawDefinitionsWrapper {
+    Single(RawDefinition),
+    Multi(Vec<RawDefinition>),
 }

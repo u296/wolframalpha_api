@@ -37,7 +37,7 @@ pub struct QueryResult {
     related: String,
     version: String,
     inputstring: String,
-    pods: Option<Vec<Pod>>,
+    pods: Option<Vec<RawPod>>,
     sources: Option<SourcesWrapper>,
     assumptions: Option<Vec<Assumption>>,
     error: ErrorWrapper,
