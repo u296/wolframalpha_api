@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
-mod pod;
+pub mod pod;
 use pod::*;
 
 #[derive(Debug, Clone, Deserialize, PartialEq)]

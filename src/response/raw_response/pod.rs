@@ -33,15 +33,15 @@ pub struct RawSubPod {
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RawImage {
-    src: String,
-    alt: String,
-    title: String,
-    width: I32OrString,
-    height: I32OrString,
-    r#type: Option<String>,
-    themes: Option<String>,
-    colorinvertable: Option<bool>,
-    contenttype: Option<String>,
+    pub src: String,
+    pub alt: String,
+    pub title: String,
+    pub width: I32OrString,
+    pub height: I32OrString,
+    pub r#type: Option<String>,
+    pub themes: Option<String>,
+    pub colorinvertable: Option<bool>,
+    pub contenttype: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -109,27 +109,27 @@ pub enum RawStateWrapper {
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RawState {
-    name: String,
-    input: String,
-    stepbystep: Option<bool>,
+    pub name: String,
+    pub input: String,
+    pub stepbystep: Option<bool>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RawMultiState {
-    count: i32,
-    value: String,
-    delimiters: String,
-    states: Vec<RawState>,
+    pub count: i32,
+    pub value: String,
+    pub delimiters: String,
+    pub states: Vec<RawState>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RawInfo {
-    units: Option<Vec<RawUnitsWrapper>>,
-    text: Option<String>,
-    img: Option<RawImage>,
-    links: Option<RawLinksWrapper>,
+    pub units: Option<Vec<RawUnitsWrapper>>,
+    pub text: Option<String>,
+    pub img: Option<RawImage>,
+    pub links: Option<RawLinksWrapper>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -139,41 +139,65 @@ pub enum RawLinksWrapper {
     Multi(Vec<RawLink>),
 }
 
+impl IntoIterator for RawLinksWrapper {
+    type Item = RawLink;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        match self {
+            Self::Single(r) => vec![r].into_iter(),
+            Self::Multi(v) => v.into_iter(),
+        }
+    }
+}
+
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RawLink {
-    url: String,
-    text: String,
-    title: Option<String>,
+    pub url: String,
+    pub text: String,
+    pub title: Option<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
 pub enum RawUnitsWrapper {
-    TimeUnit(RawTimeUnitWrapper),
+    MeasurementUnits(RawMeasurementUnitsWrapper),
     Src(RawUnitSource),
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(untagged)]
-pub enum RawTimeUnitWrapper {
-    Single(RawTimeUnit),
-    Multi(Vec<RawTimeUnit>),
+pub enum RawMeasurementUnitsWrapper {
+    Single(RawMeasurementUnit),
+    Multi(Vec<RawMeasurementUnit>),
+}
+
+impl IntoIterator for RawMeasurementUnitsWrapper {
+    type Item = RawMeasurementUnit;
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        match self {
+            Self::Multi(v) => v.into_iter(),
+            Self::Single(i) => vec![i].into_iter(),
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct RawTimeUnit {
+pub struct RawMeasurementUnit {
+    pub 
     short: String,
+    pub 
     long: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct RawUnitSource {
-    src: String,
-    width: String,
-    height: String,
+    pub src: String,
+    pub width: String,
+    pub height: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]

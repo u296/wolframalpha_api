@@ -7,7 +7,7 @@ use bytes::Bytes;
 use std::error::Error;
 use std::fmt;
 
-mod response;
+pub mod response;
 
 #[cfg(feature = "image")]
 mod get_image;
